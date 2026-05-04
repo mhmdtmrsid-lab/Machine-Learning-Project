@@ -1,0 +1,25 @@
+# Environments
+venv/
+env/
+.env
+__pycache__/
+
+# Datasets (Ignored for security and size)
+data/*.csv
+data/*.xlsx
+data/*.json
+
+# Models
+models/*.pkl
+models/*.h5
+models/*.joblib
+
+# Outputs
+outputs/*.png
+outputs/*.jpg
+outputs/*.pdf
+
+# VS Code / Jupyter / IDE
+.ipynb_checkpoints/
+.vscode/
+*.pyc
