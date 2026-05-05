@@ -15,6 +15,13 @@ def clean_data(df):
     print("Initial missing values:")
     print(df.isnull().sum())
     
+    leakage_cols = ['Descript', 'Description', 'Resolution']
+    cols_to_drop = [col for col in leakage_cols if col in df.columns]
+    if cols_to_drop:
+        df.drop(columns=cols_to_drop, inplace=True)
+        print(f"Dropped data leakage columns: {cols_to_drop}")
+        print(f"Final list of features (including target): {list(df.columns)}")
+    
     # Fill missing values with median for numerical and mode for categorical
     for col in df.columns:
         if df[col].dtype in ['int64', 'float64']:
@@ -38,6 +45,9 @@ def encode_features(df, target_col):
         
     X = df_encoded.drop(columns=[target_col])
     y = df_encoded[target_col]
+    
+    print(f"Final list of features (X): {list(X.columns)}")
+    
     return X, y, encoders
 
 def scale_data(X_train, X_test):
